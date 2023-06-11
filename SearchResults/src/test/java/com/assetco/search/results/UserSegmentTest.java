@@ -14,8 +14,7 @@ public class UserSegmentTest {
 
     @Test
     void allValuesArePresent() {
-        assertThat(UserSegment.values(), hasItemInArray(NewsMedia));
-        assertThat(UserSegment.values(), hasItemInArray(OtherMedia));
-        assertThat(UserSegment.values(), hasItemInArray(GeneralPublic));
+        assertThat(Arrays.stream(values()).map(Enum::name).collect(Collectors.toList()),
+                containsInAnyOrder("NewsMedia", "GeneralPublic", "OtherMedia"));
     }
 }
