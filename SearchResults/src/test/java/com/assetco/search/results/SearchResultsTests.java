@@ -1,8 +1,9 @@
 package com.assetco.search.results;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
-import static com.assetco.search.results.UserSegment.NewsMedia;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -55,11 +56,12 @@ public class SearchResultsTests {
         thenHotspotItemCountIs(key, 0);
     }
 
-    @Test
-    void setUserSegment() {
-        results.setUserSegment(NewsMedia);
+    @ParameterizedTest
+    @EnumSource(UserSegment.class)
+    void setUserSegment(UserSegment userSegment) {
+        results.setUserSegment(userSegment);
 
-        assertEquals(results.getUserSegment(), NewsMedia);
+        assertEquals(userSegment, results.getUserSegment());
     }
 
     private void whenClearHotspots() {
